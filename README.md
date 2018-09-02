@@ -17,7 +17,8 @@ Usage overview
 
 Steps to deploy this example, this assumes you checked out this repository and have `kubectl` installed:
 
-1. *Editing and creating the BIRD configs*
+1. **Editing and creating the BIRD configs**
+
    Edit the config maps in the `config.yaml` file as you see fit and change the BIRD config. 
 
    After editing the file, you can create the ConfigMaps:
@@ -87,7 +88,8 @@ Steps to deploy this example, this assumes you checked out this repository and h
    Make sure you use the right names for your ConfigMaps. In the `deployment.yaml` the ConfigMaps are referred to as `bird-config-1` and `bird-config-2`.
 
 
-2. *Create the BIRD Pods*
+2. **Create the BIRD Pods**
+
    Once the ConfigMaps exist, you can deploy the BIRD Pods:
    ```
    $ kubectl apply -f deployment.yaml
