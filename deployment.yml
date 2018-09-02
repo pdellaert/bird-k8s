@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bird-1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bird-1
+        service: bgp
+        type: pod
+    spec:
+      containers:
+        - image: pdellaert/bird:latest
+          name: bird-1
+          ports:
+            - containerPort: 179
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/bird
+      volumes:
+        - name: config-volume
+          configMap:
+            name: bird-config-1
+      restartPolicy: Always
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bird-2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bird-2
+        service: bgp
+        type: pod
+    spec:
+      containers:
+        - image: pdellaert/bird:latest
+          name: bird-2
+          ports:
+            - containerPort: 179
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/bird
+      volumes:
+        - name: config-volume
+          configMap:
+            name: bird-config-2
+      restartPolicy: Always
+
